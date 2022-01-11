@@ -125,7 +125,7 @@ public class SampleXxlJob {
 	/**
      * 4、跨平台Http任务
      *  参数示例：
-     *      {"url": "http://192.168.3.200/postUser",method: "GET","param": "v=3.0"}
+     *      {"url": "http://192.168.3.200/getUser","method": "GET","param": {"v":"1.0"}}
      */
     @SuppressWarnings("unchecked")
 	@XxlJob("httpJobHandler")
