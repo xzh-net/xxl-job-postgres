@@ -17,8 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 
-import cn.hutool.core.util.StrUtil;
-
 /**
  * @ClassName: ApiUtil
  * @Description:
