@@ -57,8 +57,8 @@ public class XxlJobUtil {
 	 * @throws HttpException
 	 * @throws IOException
 	 */
-	public static JSONObject deleteJob(String url, int id) throws HttpException, IOException {
-		String path = "/jobinfo/delete?id=" + id;
+	public static JSONObject removeJob(String url, int id) throws HttpException, IOException {
+		String path = "/jobinfo/remove?id=" + id;
 		return doGet(url, path);
 	}
 
@@ -90,20 +90,6 @@ public class XxlJobUtil {
 		return doGet(url, path);
 	}
 
-	/**
-	 * 根据xxl-appname获取对应id
-	 * 
-	 * @param url
-	 * @param appnameParam
-	 * @return
-	 * @throws HttpException
-	 * @throws IOException
-	 */
-	public static JSONObject getAppNameIdByAppname(String url, String appnameParam) throws HttpException, IOException {
-		String path = "/jobgroup/getAppNameIdByAppname?appnameParam=" + appnameParam;
-		return doGet(url, path);
-	}
-
 	public static JSONObject doGet(String url, String path) throws HttpException, IOException {
 		String targetUrl = url + path;
 		HttpClient httpClient = new HttpClient();
@@ -112,6 +98,23 @@ public class XxlJobUtil {
 		httpClient.executeMethod(get);
 		JSONObject result = new JSONObject();
 		result = getJsonObject(get, result);
+		return result;
+	}
+	
+	public static JSONObject doPost(String url, JSONObject requestInfo, String path) throws HttpException, IOException {
+		String targetUrl = url + path;
+		HttpClient httpClient = new HttpClient();
+		PostMethod post = new PostMethod(targetUrl);
+		post.setRequestHeader("cookie", cookie);
+		post.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		Set<String> keySet = requestInfo.keySet();
+		for (String key : keySet) {
+			String value = requestInfo.get(key).toString();
+			post.addParameter(key, value);
+		}
+		httpClient.executeMethod(post);
+		JSONObject result = new JSONObject();
+		result = getJsonObject(post, result);
 		return result;
 	}
 
@@ -162,22 +165,5 @@ public class XxlJobUtil {
 			}
 		}
 		return cookie;
-	}
-
-	public static JSONObject doPost(String url, JSONObject requestInfo, String path) throws HttpException, IOException {
-		String targetUrl = url + path;
-		HttpClient httpClient = new HttpClient();
-		PostMethod post = new PostMethod(targetUrl);
-		post.setRequestHeader("cookie", cookie);
-		post.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		Set<String> keySet = requestInfo.keySet();
-		for (String key : keySet) {
-			String value = requestInfo.get(key).toString();
-			post.addParameter(key, value);
-		}
-		httpClient.executeMethod(post);
-		JSONObject result = new JSONObject();
-		result = getJsonObject(post, result);
-		return result;
 	}
 }
