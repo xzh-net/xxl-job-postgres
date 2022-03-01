@@ -8,5 +8,3 @@ xxl:
       accessToken: 
       admin:
          addresses: http://172.17.17.165:8080/xxl-job-admin
-         username: admin
-         password: 123456
