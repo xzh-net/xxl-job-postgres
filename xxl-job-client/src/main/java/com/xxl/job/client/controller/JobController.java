@@ -106,7 +106,7 @@ public class JobController {
 
 			JSONObject response = XxlJobUtil.addJob(adminAddresses, requestInfo);
 			if (response.containsKey("code") && 200 == (Integer) response.get("code")) {
-				return CommonResult.success(response);
+				return CommonResult.success(null);
 			} else {
 				return CommonResult.failed(response.toString());
 			}
@@ -162,7 +162,7 @@ public class JobController {
 
 			JSONObject response = XxlJobUtil.updateJob(adminAddresses, requestInfo);
 			if (response.containsKey("code") && 200 == (Integer) response.get("code")) {
-				return CommonResult.success(response);
+				return CommonResult.success(null);
 			} else {
 				return CommonResult.failed(response.toString());
 			}
@@ -177,9 +177,9 @@ public class JobController {
 		try {
 			JSONObject response = XxlJobUtil.startJob(adminAddresses, id);
 			if (response.containsKey("code") && 200 == (Integer) response.get("code")) {
-				return CommonResult.success(response);
+				return CommonResult.success(null);
 			} else {
-				return CommonResult.failed(response.toString());
+				return CommonResult.failed();
 			}
 
 		} catch (Exception e) {
@@ -193,9 +193,9 @@ public class JobController {
 		try {
 			JSONObject response = XxlJobUtil.stopJob(adminAddresses, id);
 			if (response.containsKey("code") && 200 == (Integer) response.get("code")) {
-				return CommonResult.success(response);
+				return CommonResult.success(null);
 			} else {
-				return CommonResult.failed(response.toString());
+				return CommonResult.failed();
 			}
 		} catch (Exception e) {
 			return CommonResult.failed("失败" + e.getMessage());
@@ -208,9 +208,9 @@ public class JobController {
 		try {
 			JSONObject response = XxlJobUtil.removeJob(adminAddresses, id);
 			if (response.containsKey("code") && 200 == (Integer) response.get("code")) {
-				return CommonResult.success(response);
+				return CommonResult.success(null);
 			} else {
-				return CommonResult.failed(response.toString());
+				return CommonResult.failed();
 			}
 		} catch (Exception e) {
 			return CommonResult.failed("失败" + e.getMessage());
